@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 import Appointment from '../appointment';
 
@@ -14,7 +14,7 @@ export default function AppointmentView(props) {
     // Now render view.
     if (isDeleted) {
         return (
-            <Redirect to="/" />
+            <Navigate to="/" />
         );
     }
 

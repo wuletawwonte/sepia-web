@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 import { useSelector } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { Loader } from '../../components/loaders';
 
 const ChatView = lazy(() => import('./views/chatView'));
@@ -11,7 +11,7 @@ export default function ChatApp(props) {
 
     return (
         <Suspense fallback={<Loader isLoading={true} />}>
-            <Switch>
+            <Routes>
                 <Route
                     path={`${props.match.path}/:id`}
                     render={(props) => (
@@ -22,7 +22,7 @@ export default function ChatApp(props) {
                         />
                     )}
                 />
-            </Switch>
+            </Routes>
         </Suspense>
     );
 }

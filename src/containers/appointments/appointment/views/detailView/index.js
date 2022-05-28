@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from 'react';
-import { Route, Switch, useMatch } from 'react-router-dom';
+import { Route, Routes, useMatch } from 'react-router-dom';
 import { Col, FluidContainer } from '../../../../../components/layout';
 import { Loader } from '../../../../../components/loaders';
 import { WidgetRow } from '../../../../../components/widgets';
@@ -80,7 +80,7 @@ export default function AppointmentDetailView(props) {
             <WidgetRow>
                 <Col>
                     <Suspense fallback={<Loader isLoading={true} />}>
-                        <Switch>
+                        <Routes>
                             {routes.map((route, index) => (
                                 <Route
                                     key={index}
@@ -96,7 +96,7 @@ export default function AppointmentDetailView(props) {
                                     )}
                                 />
                             ))}
-                        </Switch>
+                        </Routes>
                     </Suspense>
                 </Col>
             </WidgetRow>

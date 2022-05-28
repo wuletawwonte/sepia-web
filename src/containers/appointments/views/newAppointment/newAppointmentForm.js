@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { Form } from '../../../../components/form';
 import { isValidDate } from '../../../../components/dates';
 
@@ -109,7 +109,7 @@ export default function NewAppointmentForm(props) {
     }
 
     if (fields.navigateToAppointments === true) {
-        return <Redirect to="/appointments" />
+        return <Navigate to="/appointments" />
       }
 
     return (

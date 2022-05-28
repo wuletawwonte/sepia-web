@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 import { useSelector } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { Loader } from '../../components/loaders';
 
 const AppointmentView = lazy(() => import("./views/appointment"));
@@ -14,7 +14,7 @@ export default function AppointmentApp(props) {
 
     return (
         <Suspense fallback={<Loader isLoading={true} />}>
-            <Switch>
+            <Routes>
                 <Route
                     path={`${props.match.path}/:id`}
                     render={(props) => (
@@ -56,7 +56,7 @@ export default function AppointmentApp(props) {
                         );
                     }}
                 />
-            </Switch>
+            </Routes>
         </Suspense>
     );
 }
