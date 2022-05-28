@@ -19,29 +19,11 @@ export default function App() {
           <Route
             exact
             path="/auth"
-            element={() => {
-              if (isAuthenticated) {
-                return (
-                  <Navigate to="/" />
-                );
-              }
-              return (
-                <WelcomeApp />
-              );
-            }}
+            element={isAuthenticated ? <Navigate to="/" /> : <WelcomeApp />}
           />
           <Route
             path="/"
-            element={() => {
-              if (!isAuthenticated) {
-                return (
-                  <Navigate to="/auth" exact />
-                );
-              }
-              return (
-                <HomeApp />
-              );
-            }}
+            element={!isAuthenticated ? <Navigate to="/auth" exact /> : <HomeApp />}
           />
         </Routes>
       </Suspense>
