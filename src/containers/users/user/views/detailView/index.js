@@ -7,80 +7,80 @@ import { WidgetRow } from '../../../../../components/widgets';
 
 import TitleBar from '../../../../home/titleBar';
 import Banner from './banner';
-const AboutSection  = lazy(() => import("./about"));
+
+const AboutSection = lazy(() => import('./about'));
 const MedicationSection = lazy(() => import('./medications'));
 const ReportSection = lazy(() => import('./reports'));
-const ServicesSection = lazy(() => import("./services"));
-
+const ServicesSection = lazy(() => import('./services'));
 
 export default function UserDetailView(props) {
-    let { path } = useMatch();
-    const routes = [
-        {
-            path: `${path}`,
-            exact: true,
-            component: AboutSection
-        },
-        {
-            path: `${path}/medications`,
-            component: MedicationSection
-        },
-        {
-            path: `${path}/reports`,
-            component: ReportSection
-        },
-        {
-            path: `${path}/services`,
-            component: ServicesSection
-        }
-    ];
+  const { path } = useMatch();
+  const routes = [
+    {
+      path: `${path}`,
+      exact: true,
+      component: AboutSection,
+    },
+    {
+      path: `${path}/medications`,
+      component: MedicationSection,
+    },
+    {
+      path: `${path}/reports`,
+      component: ReportSection,
+    },
+    {
+      path: `${path}/services`,
+      component: ServicesSection,
+    },
+  ];
 
-    // If profile is not of current user, disable edit mode.
-    const profileUsername = Username({ user: props.user });
-    const currentUsername = Username({ user: props.session });
-    const disableEdit = (currentUsername === profileUsername) ? false: true;
+  // If profile is not of current user, disable edit mode.
+  const profileUsername = Username({ user: props.user });
+  const currentUsername = Username({ user: props.session });
+  const disableEdit = currentUsername !== profileUsername;
 
-    // Now render view.
-    if (props.isLoading) {
-        return (
-            <Loader isLoading={true} />
-        );
-    }
-
+  // Now render view.
+  if (props.isLoading) {
     return (
-        <FluidContainer className="md-usr px-0">
-            <TitleBar title={<FullName user={props.user} />} />
-            <WidgetRow>
-                <Col>
-                    <Banner
-                        session={props.session}
-                        user={props.user}
-                    />
-                </Col>
-            </WidgetRow>
-            <WidgetRow>
-                <Col>
-                    <Suspense fallback={<Loader isLoading={true} />}>
-                        <Routes>
-                            {routes.map((route, index) => (
-                                <Route
-                                    key={index}
-                                    path={route.path}
-                                    exact={route.exact}
-                                    children={(routeProps) => (
-                                        <route.component 
-                                            {...routeProps}
-                                            session={props.session}
-                                            user={props.user}
-                                            disableEdit={disableEdit}
-                                        />
-                                    )}
-                                />
-                            ))}
-                        </Routes>
-                    </Suspense>
-                </Col>
-            </WidgetRow>
-        </FluidContainer>
+      <Loader isLoading />
     );
+  }
+
+  return (
+    <FluidContainer className="md-usr px-0">
+      <TitleBar title={<FullName user={props.user} />} />
+      <WidgetRow>
+        <Col>
+          <Banner
+            session={props.session}
+            user={props.user}
+          />
+        </Col>
+      </WidgetRow>
+      <WidgetRow>
+        <Col>
+          <Suspense fallback={<Loader isLoading />}>
+            <Routes>
+              {routes.map((route, index) => (
+                <Route
+                  key={index}
+                  path={route.path}
+                  exact={route.exact}
+                  children={(routeProps) => (
+                    <route.component
+                      {...routeProps}
+                      session={props.session}
+                      user={props.user}
+                      disableEdit={disableEdit}
+                    />
+                  )}
+                />
+              ))}
+            </Routes>
+          </Suspense>
+        </Col>
+      </WidgetRow>
+    </FluidContainer>
+  );
 }

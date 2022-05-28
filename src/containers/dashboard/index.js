@@ -9,39 +9,39 @@ import RecentMedicationWidget from './widgets/recentMedications';
 import RecentPaymentWidget from './widgets/recentPayments';
 import TodayAppointmentWidget from './widgets/todaysAppointment';
 
-
 export default function DashBoardApp(props) {
-    const session = useSelector(s => s.session);
+  const session = useSelector((s) => s.session);
 
-    return (
-        <>
-            <TitleBar title="Dashboard" />
-            <Row className="flex-grow-1">
-                <Col className="pt-3">
-                    <FluidContainer>
-                        <WidgetRow>
-                            <Col>
-                                <Banner 
-                                    session={session}
+  return (
+    <>
+      <TitleBar title="Dashboard" />
+      <Row className="flex-grow-1">
+        <Col className="pt-3">
+          <FluidContainer>
+            <WidgetRow>
+              <Col>
+                <Banner
+                  session={session}
+                />
+              </Col>
+            </WidgetRow>
+            <WidgetColumns>
+              <TodayAppointmentWidget
+                session={session}
+              />
+              {!session.isPhysician
+                                && (
+                                <RecentMedicationWidget
+                                  session={session}
                                 />
-                            </Col>
-                        </WidgetRow>
-                        <WidgetColumns>
-                            <TodayAppointmentWidget 
-                                session={session}
-                            />
-                            {!session.isPhysician &&
-                                <RecentMedicationWidget 
-                                    session={session}
-                                />
-                            }
-                            <RecentPaymentWidget 
-                                session={session}
-                            />
-                        </WidgetColumns>
-                    </FluidContainer>
-                </Col>
-            </Row>
-        </>
-    );
+                                )}
+              <RecentPaymentWidget
+                session={session}
+              />
+            </WidgetColumns>
+          </FluidContainer>
+        </Col>
+      </Row>
+    </>
+  );
 }
