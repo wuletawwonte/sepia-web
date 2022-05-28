@@ -1,5 +1,5 @@
 import React from 'react';
-import { useRouteMatch } from 'react-router-dom';
+import { useMatch } from 'react-router-dom';
 import { useExtendClass } from '../../../../../components/hooks';
 import { Day, PrettyDate, FullTime, Month } from '../../../../../components/dates';
 import { Col, FluidContainer, Row } from '../../../../../components/layout';
@@ -33,7 +33,7 @@ function SubTitle(props) {
 
 
 export default function Banner(props) {
-    let { url } = useRouteMatch();
+    let { url } = useMatch();
 
     const startTime = new Date(props.appointment.startTime);
     const endTime = new Date(props.appointment.endTime);

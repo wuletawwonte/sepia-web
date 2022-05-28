@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from 'react';
-import { Route, Switch, useRouteMatch } from 'react-router-dom';
+import { Route, Switch, useMatch } from 'react-router-dom';
 import { Col, FluidContainer } from '../../../../../components/layout';
 import { Loader } from '../../../../../components/loaders';
 import { WidgetRow } from '../../../../../components/widgets';
@@ -14,7 +14,7 @@ const PaymentSection = lazy(() => import('./payments'));
 
 
 export default function AppointmentDetailView(props) {
-    let { path } = useRouteMatch();
+    let { path } = useMatch();
     const routes = [
         {
             path: `${path}`,
