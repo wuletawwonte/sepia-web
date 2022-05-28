@@ -1,6 +1,6 @@
 import React, { Suspense, lazy } from 'react';
 import MediaQuery from 'react-responsive';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { Col, FluidContainer, Row } from '../../components/layout';
 import { Loader } from '../../components/loaders';
 
@@ -49,7 +49,7 @@ function ContentSection(props) {
 
     return (
         <Suspense fallback={<Loader isLoading={true} />}>
-            <Switch>
+            <Routes>
                 {routes.map((route, index) => (
                     <Route
                         key={index}
@@ -60,7 +60,7 @@ function ContentSection(props) {
                         )}
                     />
                 ))}
-            </Switch>
+            </Routes>
         </Suspense>
     );
 }

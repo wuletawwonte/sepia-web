@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 import { useSelector } from 'react-redux';
-import { Route, Switch } from 'react-router';
+import { Route, Routes } from 'react-router';
 import { Loader } from '../../components/loaders';
 
 const UserView = lazy(() => import("./views/user"));
@@ -13,7 +13,7 @@ export default function UserApp(props) {
 
     return (
         <Suspense fallback={<Loader isLoading={true} />}>
-            <Switch>
+            <Routes>
                 <Route 
                     path={props.match.path}
                     exact={true}
@@ -40,7 +40,7 @@ export default function UserApp(props) {
                         />
                     )}
                 />
-            </Switch>
+            </Routes>
         </Suspense>
     );
 }

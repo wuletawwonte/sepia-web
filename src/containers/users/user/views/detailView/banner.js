@@ -1,5 +1,5 @@
 import React from 'react';
-import { useRouteMatch } from 'react-router-dom';
+import { useMatch } from 'react-router-dom';
 import { Card, CardBody, CardFooter } from '../../../../../components/cards.js';
 import { useExtendClass } from "../../../../../components/hooks.js";
 import { MdIcon } from '../../../../../components/icons.js';
@@ -51,7 +51,7 @@ function InfoRow(props) {
 
 
 export default function Banner(props) {
-    let { url } = useRouteMatch();
+    let { url } = useMatch();
 
     return (
         <Card className="md-banner rounded">

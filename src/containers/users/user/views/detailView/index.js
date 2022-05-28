@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from 'react';
-import { Route, Switch, useRouteMatch } from 'react-router-dom';
+import { Route, Routes, useMatch } from 'react-router-dom';
 import { Col, FluidContainer } from '../../../../../components/layout';
 import { Loader } from '../../../../../components/loaders';
 import { FullName, Username } from '../../../../../components/users';
@@ -14,7 +14,7 @@ const ServicesSection = lazy(() => import("./services"));
 
 
 export default function UserDetailView(props) {
-    let { path } = useRouteMatch();
+    let { path } = useMatch();
     const routes = [
         {
             path: `${path}`,
@@ -61,7 +61,7 @@ export default function UserDetailView(props) {
             <WidgetRow>
                 <Col>
                     <Suspense fallback={<Loader isLoading={true} />}>
-                        <Switch>
+                        <Routes>
                             {routes.map((route, index) => (
                                 <Route
                                     key={index}
@@ -77,7 +77,7 @@ export default function UserDetailView(props) {
                                     )}
                                 />
                             ))}
-                        </Switch>
+                        </Routes>
                     </Suspense>
                 </Col>
             </WidgetRow>
