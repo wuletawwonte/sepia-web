@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from 'react';
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Loader } from './components/loaders';
 
@@ -14,11 +14,11 @@ export default function App() {
     return (
         <Router>
             <Suspense fallback={<Loader isLoading={true} />}>
-                <Switch>
+                <Routes>
                     <Route exact path="/auth" render={(props) => {
                         if (isAuthenticated) {
                             return (
-                                <Redirect to="/" />
+                                <Navigate to="/" />
                             );
                         } else {
                             return (
@@ -29,7 +29,7 @@ export default function App() {
                     <Route path="/" render={(props) => {
                         if (!isAuthenticated) {
                             return (
-                                <Redirect to="/auth" exact={true} />
+                                <Navigate to="/auth" exact={true} />
                             );
                         } else {
                             return (
@@ -37,7 +37,7 @@ export default function App() {
                             );
                         }
                     }} />
-                </Switch>
+                </Routes>
             </Suspense>
         </Router>
     );
