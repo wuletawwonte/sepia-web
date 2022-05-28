@@ -1,6 +1,6 @@
 import React, { Suspense, lazy } from 'react';
 import {
-  BrowserRouter as Router, Routes, Route, Navigate,
+  HashRouter as Router, Routes, Route, Navigate,
 } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Loader } from './components/loaders';
