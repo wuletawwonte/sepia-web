@@ -23,9 +23,8 @@ export default function SignInForm(props) {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      const response = await fetch('/api/auth/signin', {
+      const response = await fetch('https://gp-medicus.herokuapp.com/api/auth/signin', {
         method: 'POST',
-        credentials: 'same-origin',
         headers: {
           'Content-Type': 'application/json',
         },
