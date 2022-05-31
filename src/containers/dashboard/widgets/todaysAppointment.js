@@ -58,7 +58,7 @@ function AppointmentItem(props) {
       try {
         setIsLoading(true);
 
-        const response = await fetch(`/api/appointments/${props.appointment.id}`, {
+        const response = await fetch(`https://gp-medicus.herokuapp.com/api/appointments/${props.appointment.id}`, {
           headers: {
             Authorization: `Bearer ${props.session.authToken}`,
           },
@@ -140,7 +140,7 @@ export default function TodayAppointmentWidget(props) {
       try {
         setIsLoading(true);
         const page = 0;
-        const response = await fetch(`/api/appointments?view=waiting&page=${page}&limit=${state.limit}`, {
+        const response = await fetch(`https://gp-medicus.herokuapp.com/api/appointments?view=waiting&page=${page}&limit=${state.limit}`, {
           headers: {
             Authorization: `Bearer ${props.session.authToken}`,
           },

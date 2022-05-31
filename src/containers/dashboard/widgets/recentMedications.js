@@ -72,7 +72,7 @@ export default function RecentMedicationWidget(props) {
         const { username } = props.session;
         const page = 0;
 
-        const response = await fetch(`/api/users/${username}/medications?page=${page}&limit=${state.limit}`, {
+        const response = await fetch(`https://gp-medicus.herokuapp.com/api/users/${username}/medications?page=${page}&limit=${state.limit}`, {
           headers: {
             Authorization: `Bearer ${props.session.authToken}`,
           },

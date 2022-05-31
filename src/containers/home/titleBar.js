@@ -141,13 +141,13 @@ export default function TitleBar(props) {
                   </NavCollapsible>
                 </>
                 )}
-      <Nav className="order-md-last" asList>
+      {/* <Nav className="order-md-last" asList>
         <NotificationDropDown />
         <UserDropdown
           session={session}
           user={session}
         />
-      </Nav>
+      </Nav> */}
     </NavBar>
   );
 }

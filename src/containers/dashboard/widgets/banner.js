@@ -33,7 +33,7 @@ function ServicesAlert(props) {
         const page = 0;
         const limit = 10;
 
-        const response = await fetch(`/api/users/${username}/services?page=${page}&limit=${limit}`, {
+        const response = await fetch(`https://gp-medicus.herokuapp.com/api/users/${username}/services?page=${page}&limit=${limit}`, {
           headers: {
             Authorization: `Bearer ${props.session.authToken}`,
           },
