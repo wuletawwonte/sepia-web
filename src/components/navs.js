@@ -101,6 +101,7 @@ export function NavLink(props) {
 }
 
 export function NavDropdownLink(props) {
+  console.log(props);
   return (
     <Link
       href="#"

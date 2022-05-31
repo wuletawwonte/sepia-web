@@ -115,43 +115,6 @@ export function TitleBarSearch(props) {
   );
 }
 
-export default function TitleBar(props) {
-  const session = useSelector((s) => s.session);
-
-  return (
-    <NavBar className="navbar-expand-md navbar-light row md-tbar sticky-top justify-content-start">
-      <Toggler
-        target="sideBar01"
-        icon="menu"
-        toggleType="modal"
-      />
-      <NavBrand className="mr-auto p-1 font-weight-bold">{props.title}</NavBrand>
-      {props.children
-                && (
-                <>
-                  <Toggler
-                    target="titleBarNav01"
-                    icon="more_vert"
-                  />
-                  <NavCollapsible
-                    id="titleBarNav01"
-                    className="justify-content-end order-last order-md-4"
-                  >
-                    {props.children}
-                  </NavCollapsible>
-                </>
-                )}
-      {/* <Nav className="order-md-last" asList>
-        <NotificationDropDown />
-        <UserDropdown
-          session={session}
-          user={session}
-        />
-      </Nav> */}
-    </NavBar>
-  );
-}
-
 // Session based components.
 function UserDropdown(props) {
   const dispatch = useDispatch();
@@ -161,7 +124,6 @@ function UserDropdown(props) {
     try {
       const response = await fetch('https://gp-medicus.herokuapp.com/api/auth/signout', {
         method: 'GET',
-        credentials: 'same-origin',
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${props.session.authToken}`,
@@ -221,6 +183,43 @@ function UserDropdown(props) {
         ))}
       </NavDropdownMenu>
     </NavDropdown>
+  );
+}
+
+export default function TitleBar(props) {
+  const session = useSelector((s) => s.session);
+
+  return (
+    <NavBar className="navbar-expand-md navbar-light row md-tbar sticky-top justify-content-start">
+      <Toggler
+        target="sideBar01"
+        icon="menu"
+        toggleType="modal"
+      />
+      <NavBrand className="mr-auto p-1 font-weight-bold">{props.title}</NavBrand>
+      {props.children
+                && (
+                <>
+                  <Toggler
+                    target="titleBarNav01"
+                    icon="more_vert"
+                  />
+                  <NavCollapsible
+                    id="titleBarNav01"
+                    className="justify-content-end order-last order-md-4"
+                  >
+                    {props.children}
+                  </NavCollapsible>
+                </>
+                )}
+      <Nav className="order-md-last" asList>
+        <NotificationDropDown />
+        {/* <UserDropdown
+          session={session}
+          user={session}
+        /> */}
+      </Nav>
+    </NavBar>
   );
 }
 
