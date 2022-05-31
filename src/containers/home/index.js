@@ -15,51 +15,41 @@ const HelpCenterApp = lazy(() => import('../help'));
 const ContactApp = lazy(() => import('../contact'));
 
 function ContentSection(props) {
-  const routes = [
-    {
-      path: '/',
-      exact: true,
-      component: DashboardApp,
-    },
-    {
-      path: '/users',
-      component: UserApp,
-    },
-    {
-      path: '/appointments',
-      component: AppointmentApp,
-    },
-    {
-      path: '/chats',
-      component: ChatApp,
-    },
-    {
-      path: '/settings',
-      component: SettingsApp,
-    },
-    {
-      path: '/help',
-      component: HelpCenterApp,
-    },
-    {
-      path: '/contact',
-      component: ContactApp,
-    },
-  ];
 
   return (
     <Suspense fallback={<Loader isLoading />}>
       <Routes>
-        {routes.map((route, index) => (
-          <Route
-            key={index}
-            path={route.path}
-            exact={route.exact}
-            children={(props) => (
-              <route.component {...props} />
-            )}
-          />
-        ))}
+        <Route 
+          path='/'
+          exact="true"
+          element={<DashboardApp />}
+        />
+        <Route
+          path= '/users'
+          element={<UserApp />}
+        />
+        <Route
+          path= '/appointments'
+          element={<AppointmentApp />}
+        />
+        <Route
+          path= '/chats'
+          element={<ChatApp />}
+        />
+        <Route
+          path= '/settings'
+          element={<SettingsApp />}
+        />
+        <Route      
+          path = '/help'
+          element={<HelpCenterApp />}
+        />
+        <Route
+          path= '/contact'
+          element={<ContactApp />}
+        />
+
+
       </Routes>
     </Suspense>
   );

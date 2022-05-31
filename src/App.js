@@ -1,6 +1,6 @@
 import React, { Suspense, lazy } from 'react';
 import {
-  HashRouter as Router, Routes, Route, Navigate,
+  BrowserRouter as Router, Routes, Route, Navigate,
 } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Loader } from './components/loaders';
@@ -17,13 +17,13 @@ export default function App() {
       <Suspense fallback={<Loader isLoading />}>
         <Routes>
           <Route
-            exact
             path="/auth"
-            element={isAuthenticated ? <Navigate to="/" /> : <WelcomeApp />}
+            element={isAuthenticated ? <Navigate to="/" exact /> : <WelcomeApp />}
           />
           <Route
-            path="/"
-            element={!isAuthenticated ? <Navigate to="/auth" exact /> : <HomeApp />}
+            path="/*"
+            exact
+            element={!isAuthenticated ? <Navigate to="/auth" /> : <HomeApp />}
           />
         </Routes>
       </Suspense>
